@@ -5,9 +5,10 @@ import { spacing } from './src/theme/spacing';
 import { typography } from './src/theme/typography';
 import { useFonts } from 'expo-font';
 import Text from './src/components/text/text';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/screens/home';
+import { SafeAreaView } from 'react-native-web';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,19 +32,20 @@ export default function App() {
     //   </Text>
     //   <StatusBar style="auto" />
     // </View>
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <>
+      {/* <NavigationContainer theme={DarkTheme}> */}
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Home" component={Home} />
+        </Stack.Navigator>
+      </NavigationContainer>
+      <StatusBar style="light"></StatusBar>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'black',
   },
 });
