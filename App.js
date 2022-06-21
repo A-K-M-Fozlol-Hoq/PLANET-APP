@@ -19,7 +19,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text
-        preset="h2"
+        preset="h1"
         style={{ fontFamily: typography.bold, fontSize: spacing[5] }}
       >
         Open up App.js to start working on your app!
@@ -33,8 +33,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: colors.darkOrange ,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'black',
   },
 });
