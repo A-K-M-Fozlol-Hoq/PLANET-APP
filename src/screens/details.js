@@ -7,7 +7,7 @@ import { colors } from '../theme/colors';
 export default function Details() {
   return (
     <SafeAreaView style={styles.container}>
-      <PlanetHeader></PlanetHeader>
+      <PlanetHeader backBtn={true}></PlanetHeader>
     </SafeAreaView>
   );
 }
