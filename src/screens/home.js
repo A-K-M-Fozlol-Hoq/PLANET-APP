@@ -12,7 +12,34 @@ import { colors } from '../theme/colors';
 import { PLANET_LIST } from '../data/planet-list';
 import { spacing } from '../theme/spacing';
 import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+
+const PlanetItem = ({ item }) => {
+  const navigation = useNavigation();
+  const { name, color } = item;
+  return (
+    <Pressable
+      onPress={() => {
+        navigation.navigate('Details', { planet: item });
+      }}
+      style={styles.item}
+    >
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={[styles.circle, { backgroundColor: color }]}></View>
+        <Text preset="h4" style={styles.itemName}>
+          {name}
+        </Text>
+      </View>
+      <AntDesign name="right" size={18} color="white" />
+    </Pressable>
+  );
+};
+
 export default function Home({ navigation }) {
+  const renderItem = ({ item }) => {
+    return <PlanetItem item={item} />;
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <PlanetHeader />
@@ -22,27 +49,7 @@ export default function Home({ navigation }) {
         keyExtractor={(item) => {
           return item.name;
         }}
-        renderItem={({ item }) => {
-          const { name, color } = item;
-          return (
-            <Pressable
-              onPress={() => {
-                navigation.navigate('Details', { planet: item });
-              }}
-              style={styles.item}
-            >
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <View
-                  style={[styles.circle, { backgroundColor: color }]}
-                ></View>
-                <Text preset="h4" style={styles.itemName}>
-                  {name}
-                </Text>
-              </View>
-              <AntDesign name="right" size={18} color="white" />
-            </Pressable>
-          );
-        }}
+        renderItem={renderItem}
         ItemSeparatorComponent={() => <View style={styles.separator}></View>}
       ></FlatList>
     </SafeAreaView>
